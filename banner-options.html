@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f3f4f6; padding: 1rem; }
+    .label { font-size: 14px; font-weight: 700; color: #666; margin: 2rem 0 .75rem; text-transform: uppercase; letter-spacing: .05em; }
+    .label:first-child { margin-top: 0; }
+
+    /* Option A: Slim strip */
+    .banner-a {
+      background: linear-gradient(135deg, #065666, #1a5276);
+      color: #fff;
+      padding: .65rem 1rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+    }
+    .banner-a-left {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .85rem;
+    }
+    .banner-a-left strong { color: #d4a853; }
+    .banner-a a {
+      flex-shrink: 0;
+      background: #d4a853;
+      color: #1f2937;
+      padding: .4rem .85rem;
+      border-radius: 6px;
+      font-size: .8rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* Option B: Notification style */
+    .banner-b {
+      background: #065666;
+      color: #fff;
+      padding: .5rem 1rem;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      font-size: .825rem;
+    }
+    .banner-b svg { flex-shrink: 0; }
+    .banner-b a { color: #d4a853; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+
+    /* Option C: Subtle card */
+    .banner-c {
+      background: #fff;
+      border: 1.5px solid #0e7490;
+      border-radius: 10px;
+      padding: .75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .banner-c-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: #e6f7fa;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .banner-c-icon svg { stroke: #0e7490; }
+    .banner-c-text { flex: 1; font-size: .825rem; color: #1f2937; line-height: 1.4; }
+    .banner-c-text strong { color: #065666; }
+    .banner-c a {
+      flex-shrink: 0;
+      color: #0e7490;
+      font-weight: 700;
+      font-size: .825rem;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="label">Option A: Slim strip</div>
+  <div class="banner-a">
+    <div class="banner-a-left">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span><strong>Save</strong> when you order direct</span>
+    </div>
+    <a href="#">Order Now</a>
+  </div>
+
+  <div class="label">Option B: Pill notification</div>
+  <div class="banner-b">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    <span>Skip delivery app fees &mdash;</span>
+    <a href="#">Order direct &amp; save</a>
+  </div>
+
+  <div class="label">Option C: Subtle card</div>
+  <div class="banner-c">
+    <div class="banner-c-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <div class="banner-c-text"><strong>Best prices</strong> when you order direct. Skip the delivery app fees.</div>
+    <a href="#">Order &rarr;</a>
+  </div>
+
+</body>
+</html>

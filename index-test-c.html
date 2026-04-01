@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olympia Gyros | Authentic Greek Food in Kathleen, GA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Override the big banner with Option C style */
+    .direct-banner {
+      background: transparent !important;
+      padding: 0 !important;
+    }
+    .direct-banner-inner {
+      flex-direction: row !important;
+      background: #fff;
+      border: 1.5px solid #0e7490;
+      border-radius: 10px;
+      padding: .75rem 1rem;
+      gap: .75rem;
+      margin: -1.5rem 1rem 0;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+    .direct-banner-icon {
+      width: 36px !important;
+      height: 36px !important;
+      background: #e6f7fa !important;
+    }
+    .direct-banner-icon svg { stroke: #0e7490 !important; width: 18px; height: 18px; }
+    .direct-banner-text {
+      flex: 1;
+    }
+    .direct-banner-text h3 {
+      font-size: .85rem !important;
+      color: #065666 !important;
+      margin-bottom: 0 !important;
+    }
+    .direct-banner-text p {
+      font-size: .8rem !important;
+      color: #4b5563 !important;
+      opacity: 1 !important;
+    }
+    .direct-banner-btn {
+      display: none !important;
+    }
+    /* Add an arrow link instead */
+    .direct-banner-inner::after {
+      content: "Order \2192";
+      flex-shrink: 0;
+      color: #0e7490;
+      font-weight: 700;
+      font-size: .825rem;
+      white-space: nowrap;
+      align-self: center;
+    }
+
+    @media (max-width: 768px) {
+      .direct-banner-inner {
+        margin: -1.25rem .75rem 0;
+      }
+      .direct-banner-text p { display: none; }
+      .direct-banner-text h3 { font-size: .825rem !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Copy header and hero from main index -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="Olympia Gyros home">
+        <img src="assets/images/image-0.png" alt="Olympia Gyros logo" width="48" height="48">
+        <span class="logo-text">Olympia Gyros</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Main navigation">
+        <a href="#menu" class="nav-link">Menu</a>
+        <a href="#about" class="nav-link">Our Story</a>
+        <a href="#location" class="nav-link">Location</a>
+        <a href="#" class="btn btn-primary btn-sm">Order Online</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="assets/images/google/interior-1.jpg" alt="Olympia Gyros restaurant interior" loading="eager">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1>Authentic Greek.<br>Made Fresh Daily.</h1>
+      <p class="hero-sub">Gyros, shawarma, bowls, platters &amp; more in Kathleen, GA</p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn-primary btn-lg">Order Online</a>
+        <a href="#menu" class="btn btn-outline btn-lg">View Menu</a>
+      </div>
+      <div class="hero-info">
+        <div class="hero-info-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Mon-Sat 10:30am - 8:00pm</span>
+        </div>
+        <div class="hero-info-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:4782872176">(478) 287-2176</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Option C banner -->
+  <section class="direct-banner">
+    <div class="container direct-banner-inner">
+      <div class="direct-banner-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="direct-banner-text">
+        <h3>Best prices when you order direct</h3>
+        <p>Skip the delivery app fees.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu section (truncated for preview) -->
+  <section class="menu-section" id="menu">
+    <div class="container">
+      <h2 class="section-title">Our Menu</h2>
+      <p class="section-sub">Everything made fresh every morning. Nothing from cans.</p>
+      <div class="menu-tabs" role="tablist">
+        <button class="menu-tab active" role="tab" data-category="featured">Featured</button>
+        <button class="menu-tab" role="tab" data-category="starters">Starters</button>
+        <button class="menu-tab" role="tab" data-category="bowls">Bowls</button>
+        <button class="menu-tab" role="tab" data-category="wraps">Wraps</button>
+      </div>
+      <div class="menu-grid" id="menu-grid">
+        <div class="menu-card" data-category="featured">
+          <img src="assets/dishes/gyro-melt.jpg" alt="Gyro Wrap" loading="lazy" width="400" height="400">
+          <div class="menu-card-body">
+            <div class="menu-card-header"><h3>Gyro Wrap</h3><span class="price">$12.99</span></div>
+            <p>Shredded gyro, grilled onions, lettuce, tomato, feta cheese, tzatziki sauce</p>
+          </div>
+        </div>
+        <div class="menu-card" data-category="featured">
+          <img src="assets/dishes/shawarma-bowl.jpg" alt="Chicken Shawarma Bowl" loading="lazy" width="400" height="400">
+          <div class="menu-card-body">
+            <div class="menu-card-header"><h3>Chicken Shawarma Bowl</h3><span class="price">$12.99</span></div>
+            <p>Over rice, lettuce, tomatoes, onions, cucumbers, feta cheese, tahini sauce, pita bread</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sticky-order">
+    <a href="#" class="btn btn-primary btn-lg btn-block">Order Online</a>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

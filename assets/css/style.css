@@ -211,52 +211,49 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: .5rem;
 }
+/* Reviews badge */
+.hero-reviews {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(8px);
+  padding: .4rem .85rem;
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+  text-decoration: none;
+  transition: background var(--transition);
+}
+.hero-reviews:hover { background: rgba(0,0,0,.5); }
+.hero-reviews-stars {
+  display: flex;
+  gap: 1px;
+}
+.hero-reviews-text {
+  font-size: .8rem;
+  color: rgba(255,255,255,.9);
+  font-weight: 500;
+}
+
 .hero-info-item a { color: var(--white); text-decoration: underline; text-underline-offset: 2px; }
 
-/* ===== Order Direct Banner ===== */
-.direct-banner {
-  background: linear-gradient(135deg, var(--teal-dark) 0%, var(--blue) 100%);
-  color: var(--white);
-  padding: 2.5rem 0;
+/* ===== Order Direct Note (Option 2: Inside menu) ===== */
+.menu-note {
+  text-align: center;
+  font-size: .85rem;
+  color: var(--gray-600);
+  margin-bottom: 1.5rem;
+  padding: .55rem 1rem;
+  background: #f0fdfa;
+  border-radius: 6px;
 }
-.direct-banner-inner {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+.menu-note a {
+  color: var(--teal);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
-.direct-banner-icon {
-  flex-shrink: 0;
-  width: 56px;
-  height: 56px;
-  background: rgba(255,255,255,.15);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.direct-banner-icon svg { stroke: var(--gold); }
-.direct-banner-text { flex: 1; }
-.direct-banner-text h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: .25rem;
-}
-.direct-banner-text p {
-  font-size: .95rem;
-  opacity: .85;
-  line-height: 1.5;
-}
-.direct-banner-btn {
-  flex-shrink: 0;
-  background: var(--gold) !important;
-  border-color: var(--gold) !important;
-  color: var(--gray-900) !important;
-  font-weight: 700;
-}
-.direct-banner-btn:hover {
-  background: #c49a3f !important;
-  border-color: #c49a3f !important;
-}
+.menu-note a:hover { color: var(--teal-dark); }
 
 /* ===== Menu Section ===== */
 .menu-section {
@@ -493,10 +490,8 @@ a { color: inherit; text-decoration: none; }
   .hero-content { padding: 5rem 1rem 6rem; }
   .hero-info { flex-direction: column; gap: .75rem; align-items: center; }
 
-  /* Direct banner */
-  .direct-banner { padding: 1.75rem 0; }
-  .direct-banner-inner { flex-direction: column; text-align: center; gap: 1rem; }
-  .direct-banner-btn { width: 100%; }
+  /* Direct note */
+  .menu-note { font-size: .8rem; }
 
   /* Menu */
   .menu-section { padding: 3rem 0; }
