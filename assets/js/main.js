@@ -34,6 +34,9 @@ tabs.forEach(tab => {
     tabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
 
+    // Scroll the active tab into view
+    tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
     cards.forEach(card => {
       if (card.dataset.category === category) {
         card.hidden = false;
