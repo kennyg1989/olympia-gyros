@@ -44,6 +44,18 @@ tabs.forEach(tab => {
   });
 });
 
+// Menu tabs scroll fade indicator
+const tabsContainer = document.querySelector('.menu-tabs');
+const tabsWrapper = document.querySelector('.menu-tabs-wrapper');
+if (tabsContainer && tabsWrapper) {
+  tabsContainer.addEventListener('scroll', () => {
+    const atEnd = tabsContainer.scrollLeft + tabsContainer.clientWidth >= tabsContainer.scrollWidth - 10;
+    const atStart = tabsContainer.scrollLeft > 10;
+    tabsWrapper.classList.toggle('scrolled-end', atEnd);
+    tabsWrapper.classList.toggle('scrolled-start', atStart);
+  }, { passive: true });
+}
+
 // Show featured by default
 document.querySelector('.menu-tab[data-category="featured"]').click();
 

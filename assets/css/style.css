@@ -275,6 +275,50 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* Tabs */
+.menu-tabs-wrapper {
+  position: relative;
+}
+.menu-tabs-wrapper::before {
+  content: '\2039';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: .75rem;
+  width: 40px;
+  background: linear-gradient(to left, transparent, var(--off-white) 60%);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 4px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gray-600);
+  opacity: 0;
+  transition: opacity var(--transition);
+  z-index: 1;
+}
+.menu-tabs-wrapper.scrolled-start::before { opacity: 1; }
+.menu-tabs-wrapper::after {
+  content: '\203A';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: .75rem;
+  width: 40px;
+  background: linear-gradient(to right, transparent, var(--off-white) 60%);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 4px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gray-600);
+  transition: opacity var(--transition);
+  z-index: 1;
+}
+.menu-tabs-wrapper.scrolled-end::after { opacity: 0; }
 .menu-tabs {
   display: flex;
   gap: .5rem;
@@ -321,9 +365,12 @@ a { color: inherit; text-decoration: none; }
 .menu-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
 .menu-card[hidden] { display: none; }
 .menu-card img {
-  width: 100%;
+  width: 200px;
   height: 200px;
   object-fit: cover;
+  border-radius: 50%;
+  margin: 1rem auto 0;
+  /* Try enhanced versions */
 }
 .menu-card-body { padding: 1rem 1.25rem; }
 .menu-card-header {
