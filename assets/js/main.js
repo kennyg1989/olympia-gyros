@@ -26,24 +26,25 @@ window.addEventListener('scroll', () => {
 // Menu category tabs
 const tabs = document.querySelectorAll('.menu-tab');
 const cards = document.querySelectorAll('.menu-card');
+let initialLoad = true;
+
+function filterMenu(category) {
+  cards.forEach(card => {
+    card.hidden = card.dataset.category !== category;
+  });
+}
 
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
-    const category = tab.dataset.category;
-
     tabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
 
-    // Scroll the active tab into view
-    tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    // Only scroll tab strip on user interaction, not initial load
+    if (!initialLoad) {
+      tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
 
-    cards.forEach(card => {
-      if (card.dataset.category === category) {
-        card.hidden = false;
-      } else {
-        card.hidden = true;
-      }
-    });
+    filterMenu(tab.dataset.category);
   });
 });
 
@@ -59,8 +60,33 @@ if (tabsContainer && tabsWrapper) {
   }, { passive: true });
 }
 
-// Show featured by default
-document.querySelector('.menu-tab[data-category="featured"]').click();
+// Show featured by default (without scrolling)
+filterMenu('featured');
+document.querySelector('.menu-tab[data-category="featured"]').classList.add('active');
+initialLoad = false;
+
+// Menu search
+const searchInput = document.getElementById('menu-search');
+if (searchInput) {
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+
+    if (query === '') {
+      // Reset to active tab
+      const activeTab = document.querySelector('.menu-tab.active');
+      if (activeTab) filterMenu(activeTab.dataset.category);
+      return;
+    }
+
+    // Deactivate tabs during search
+    tabs.forEach(t => t.classList.remove('active'));
+
+    cards.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      card.hidden = !text.includes(query);
+    });
+  });
+}
 
 // Hide sticky order button when hero order button is visible
 const heroActions = document.querySelector('.hero-actions');
