@@ -88,6 +88,42 @@ if (searchInput) {
   });
 }
 
+// About gallery (specials carousel)
+const gallery = document.getElementById('specials');
+if (gallery) {
+  const slides = gallery.querySelectorAll('.gallery-slide');
+  const dots = gallery.querySelectorAll('.gallery-dot');
+  const prevBtn = gallery.querySelector('.gallery-prev');
+  const nextBtn = gallery.querySelector('.gallery-next');
+  let current = 0;
+  let autoTimer;
+
+  function showSlide(idx) {
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function startAuto() {
+    autoTimer = setInterval(() => showSlide(current + 1), 10000);
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    startAuto();
+  }
+
+  prevBtn.addEventListener('click', () => { showSlide(current - 1); resetAuto(); });
+  nextBtn.addEventListener('click', () => { showSlide(current + 1); resetAuto(); });
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { showSlide(i); resetAuto(); });
+  });
+
+  startAuto();
+}
+
 // Hide sticky order button when hero order button is visible
 const heroActions = document.querySelector('.hero-actions');
 const stickyOrder = document.querySelector('.sticky-order');
