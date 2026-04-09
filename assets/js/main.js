@@ -135,3 +135,33 @@ if (heroActions && stickyOrder) {
   }, { threshold: 0 });
   observer.observe(heroActions);
 }
+
+// Track button clicks in Google Analytics
+document.querySelectorAll('a[href]').forEach(link => {
+  const href = link.href;
+  let label = null;
+
+  if (href.includes('toasttab.com')) {
+    label = 'Order Pickup';
+  } else if (href.includes('doordash.com')) {
+    label = 'DoorDash';
+  } else if (href.includes('ubereats.com')) {
+    label = 'Uber Eats';
+  } else if (href.includes('olympia-menu.pdf')) {
+    label = 'Menu PDF';
+  } else if (href.includes('tel:')) {
+    label = 'Phone Call';
+  } else if (href.includes('google.com/maps') || href.includes('share.google')) {
+    label = 'Google Reviews';
+  }
+
+  if (label && typeof gtag === 'function') {
+    link.addEventListener('click', () => {
+      gtag('event', 'click', {
+        event_category: 'engagement',
+        event_label: label,
+        transport_type: 'beacon'
+      });
+    });
+  }
+});
