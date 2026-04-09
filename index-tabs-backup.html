@@ -140,32 +140,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
-
-  <style>
-    /* PDF + actions */
-    .menu-top-actions { text-align: center; margin-bottom: .75rem; }
-    /* Chipotle-style: sticky nav + all items visible */
-    .menu-tabs-wrapper {
-      position: sticky;
-      top: 64px;
-      z-index: 10;
-      background: var(--off-white);
-      padding-top: .5rem;
-      margin-bottom: 1rem;
-    }
-    .menu-cat-header {
-      grid-column: 1 / -1;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
-      color: var(--gray-900);
-      padding: 1.5rem 0 .5rem;
-      border-bottom: 2px solid var(--teal);
-      scroll-margin-top: 140px;
-    }
-    .menu-cat-header:first-of-type { padding-top: 0; }
-    .menu-card { display: block !important; }
-    .menu-card[hidden] { display: block !important; }
-  </style>
 </head>
 <body>
   <!-- Header -->
@@ -231,7 +205,12 @@
     <div class="container">
       <h2 class="section-title">Our Menu</h2>
       <p class="section-sub">Everything made fresh every morning. Nothing from cans.</p>
-      <div class="menu-top-actions">
+      <!-- Menu tools: search + PDF + order direct note -->
+      <div class="menu-toolbar">
+        <div class="menu-search-wrapper">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="menu-search" placeholder="Search menu items..." autocomplete="off">
+        </div>
         <a href="assets/olympia-menu.pdf" target="_blank" class="btn btn-outline-dark btn-sm menu-pdf-top">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           Full Menu (PDF)
@@ -239,21 +218,21 @@
       </div>
       <div class="menu-note">Skip the delivery app fees &mdash; <a href="https://www.toasttab.com/olympia-gyros-670-lake-joy-road-ste-150/v3/" target="_blank" rel="noopener">order direct and save</a></div>
 
-      <!-- Sticky Category Jump Nav -->
-      <div class="menu-tabs-wrapper" id="menu-sticky-nav">
-      <div class="menu-tabs">
-        <a href="#cat-featured" class="menu-tab" data-cat="featured">Featured</a>
-        <a href="#cat-starters" class="menu-tab" data-cat="starters">Starters</a>
-        <a href="#cat-bowls" class="menu-tab" data-cat="bowls">Bowls</a>
-        <a href="#cat-wraps" class="menu-tab" data-cat="wraps">Wraps</a>
-        <a href="#cat-street-food" class="menu-tab" data-cat="street-food">Street Food</a>
-        <a href="#cat-american" class="menu-tab" data-cat="american">American</a>
-        <a href="#cat-salads" class="menu-tab" data-cat="salads">Salads</a>
-        <a href="#cat-burgers" class="menu-tab" data-cat="burgers">Burgers</a>
-        <a href="#cat-lunch" class="menu-tab" data-cat="lunch">Lunch</a>
-        <a href="#cat-dinner" class="menu-tab" data-cat="dinner">Dinner</a>
-        <a href="#cat-sides" class="menu-tab" data-cat="sides">Sides</a>
-        <a href="#cat-desserts" class="menu-tab" data-cat="desserts">Desserts</a>
+      <!-- Menu Category Tabs -->
+      <div class="menu-tabs-wrapper">
+      <div class="menu-tabs" role="tablist">
+        <button class="menu-tab active" role="tab" data-category="featured">Featured</button>
+        <button class="menu-tab" role="tab" data-category="starters">Starters</button>
+        <button class="menu-tab" role="tab" data-category="bowls">Bowls</button>
+        <button class="menu-tab" role="tab" data-category="wraps">Wraps</button>
+        <button class="menu-tab" role="tab" data-category="street-food">Street Food</button>
+        <button class="menu-tab" role="tab" data-category="american">American Flavors</button>
+        <button class="menu-tab" role="tab" data-category="salads">Salads</button>
+        <button class="menu-tab" role="tab" data-category="burgers">Burgers</button>
+        <button class="menu-tab" role="tab" data-category="lunch">Lunch Specials</button>
+        <button class="menu-tab" role="tab" data-category="dinner">Dinner Specials</button>
+        <button class="menu-tab" role="tab" data-category="sides">Sides</button>
+        <button class="menu-tab" role="tab" data-category="desserts">Desserts</button>
       </div>
       </div>
 
@@ -261,7 +240,6 @@
       <div class="menu-grid" id="menu-grid">
 
         <!-- Featured -->
-        <h3 class="menu-cat-header" id="cat-featured">Featured</h3>
         <div class="menu-card" data-category="featured">
           <img src="assets/dishes-enhanced/gyro-platter.jpg" alt="Gyro Wrap" loading="lazy" width="400" height="400">
           <div class="menu-card-body">
@@ -285,7 +263,6 @@
         </div>
 
         <!-- Starters -->
-        <h3 class="menu-cat-header" id="cat-starters">Starters</h3>
         <div class="menu-card" data-category="starters">
           <div class="menu-card-body">
             <div class="menu-card-header"><h3>Tzatziki Dip</h3><span class="price">$9.99</span></div>
@@ -330,7 +307,6 @@
         </div>
 
         <!-- Bowls -->
-        <h3 class="menu-cat-header" id="cat-bowls">Bowls</h3>
         <div class="menu-card" data-category="bowls">
           <img src="assets/dishes-enhanced/chicken-bowl.jpg" alt="Gyro Bowl" loading="lazy" width="400" height="400">
           <div class="menu-card-body">
@@ -380,7 +356,6 @@
         </div>
 
         <!-- Wraps -->
-        <h3 class="menu-cat-header" id="cat-wraps">Wraps</h3>
         <div class="menu-card" data-category="wraps">
           <div class="menu-card-body">
             <div class="menu-card-header"><h3>Gyro Wrap</h3><span class="price">$12.99</span></div>
@@ -413,7 +388,6 @@
         </div>
 
         <!-- Street Food -->
-        <h3 class="menu-cat-header" id="cat-street-food">Street Food</h3>
         <div class="menu-card" data-category="street-food">
           <div class="menu-card-body">
             <div class="menu-card-header"><h3>Gyro Sandwich</h3><span class="price">$11.99</span></div>
@@ -452,7 +426,6 @@
         </div>
 
         <!-- American Flavors -->
-        <h3 class="menu-cat-header" id="cat-american">American Flavors</h3>
         <div class="menu-card" data-category="american">
           <div class="menu-card-body">
             <div class="menu-card-header"><h3>Gyro Melt</h3><span class="price">$12.99</span></div>
@@ -491,7 +464,6 @@
         </div>
 
         <!-- Salads -->
-        <h3 class="menu-cat-header" id="cat-salads">Salads</h3>
         <div class="menu-card" data-category="salads">
           <img src="assets/dishes-enhanced/greek-salad-gyro.jpg" alt="Greek Salad" loading="lazy" width="400" height="400">
           <div class="menu-card-body">
@@ -513,7 +485,6 @@
         </div>
 
         <!-- Burgers -->
-        <h3 class="menu-cat-header" id="cat-burgers">Burgers</h3>
         <div class="menu-card" data-category="burgers">
           <img src="assets/dishes-enhanced/greek-burger.jpg" alt="Greek Burger" loading="lazy" width="400" height="400">
           <div class="menu-card-body">
@@ -535,7 +506,6 @@
         </div>
 
         <!-- Lunch Specials -->
-        <h3 class="menu-cat-header" id="cat-lunch">Lunch Specials</h3>
         <div class="menu-card" data-category="lunch">
           <img src="assets/dishes-enhanced/gyro-platter.jpg" alt="Gyro Platter" loading="lazy" width="400" height="400">
           <div class="menu-card-body">
@@ -585,7 +555,6 @@
         </div>
 
         <!-- Dinner Specials -->
-        <h3 class="menu-cat-header" id="cat-dinner">Dinner Specials</h3>
         <div class="menu-card" data-category="dinner">
           <img src="assets/dishes-enhanced/baywest-salmon.jpg" alt="Baywest Salmon" loading="lazy" width="400" height="400">
           <div class="menu-card-body">
@@ -634,7 +603,6 @@
         </div>
 
         <!-- Sides -->
-        <h3 class="menu-cat-header" id="cat-sides">Sides</h3>
         <div class="menu-card" data-category="sides">
           <div class="menu-card-body">
             <div class="menu-card-header"><h3>French Fries</h3><span class="price">$3.99</span></div>
@@ -677,7 +645,6 @@
         </div>
 
         <!-- Desserts -->
-        <h3 class="menu-cat-header" id="cat-desserts">Desserts</h3>
         <div class="menu-card" data-category="desserts">
           <img src="assets/dishes-enhanced/desserts-1.jpg" alt="Cake Slice" loading="lazy" width="400" height="400">
           <div class="menu-card-body">
@@ -808,75 +775,5 @@
   </div>
 
   <script src="assets/js/main.js"></script>
-
-  <script>
-    // Override: show all items, disable tab filtering
-    document.querySelectorAll('.menu-card').forEach(c => c.hidden = false);
-
-    // Sticky nav: highlight active category on scroll
-    const catHeaders = document.querySelectorAll('.menu-cat-header');
-    const navLinks = document.querySelectorAll('.menu-tabs a[data-cat]');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-          });
-          // Scroll the active tab into view in the nav strip
-          const activeLink = document.querySelector('.menu-tabs a.active');
-          if (activeLink) {
-            activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-          }
-        }
-      });
-    }, { rootMargin: '-140px 0px -60% 0px', threshold: 0 });
-
-    catHeaders.forEach(h => observer.observe(h));
-
-    // Click nav links: smooth scroll
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-
-    // Search: filter across all and hide headers with no visible items
-    const searchInput = document.getElementById('menu-search');
-    if (searchInput) {
-      searchInput.addEventListener('input', () => {
-        const query = searchInput.value.toLowerCase().trim();
-        const cards = document.querySelectorAll('.menu-card');
-
-        if (query === '') {
-          cards.forEach(c => c.style.display = '');
-          catHeaders.forEach(h => h.style.display = '');
-          return;
-        }
-
-        cards.forEach(card => {
-          const match = card.textContent.toLowerCase().includes(query);
-          card.style.display = match ? '' : 'none';
-        });
-
-        // Hide category headers with no visible items
-        catHeaders.forEach(h => {
-          let next = h.nextElementSibling;
-          let hasVisible = false;
-          while (next && !next.classList.contains('menu-cat-header')) {
-            if (next.classList.contains('menu-card') && next.style.display !== 'none') {
-              hasVisible = true;
-              break;
-            }
-            next = next.nextElementSibling;
-          }
-          h.style.display = hasVisible ? '' : 'none';
-        });
-      });
-    }
-  </script>
 </body>
 </html>
