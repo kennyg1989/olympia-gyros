@@ -23,31 +23,6 @@ window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 10);
 }, { passive: true });
 
-// Menu category tabs
-const tabs = document.querySelectorAll('.menu-tab');
-const cards = document.querySelectorAll('.menu-card');
-let initialLoad = true;
-
-function filterMenu(category) {
-  cards.forEach(card => {
-    card.hidden = card.dataset.category !== category;
-  });
-}
-
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    tabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-
-    // Only scroll tab strip on user interaction, not initial load
-    if (!initialLoad) {
-      tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    }
-
-    filterMenu(tab.dataset.category);
-  });
-});
-
 // Menu tabs scroll fade indicator
 const tabsContainer = document.querySelector('.menu-tabs');
 const tabsWrapper = document.querySelector('.menu-tabs-wrapper');
@@ -58,35 +33,6 @@ if (tabsContainer && tabsWrapper) {
     tabsWrapper.classList.toggle('scrolled-end', atEnd);
     tabsWrapper.classList.toggle('scrolled-start', atStart);
   }, { passive: true });
-}
-
-// Show featured by default (without scrolling)
-filterMenu('featured');
-const featuredTab = document.querySelector('.menu-tab[data-category="featured"]');
-if (featuredTab) featuredTab.classList.add('active');
-initialLoad = false;
-
-// Menu search
-const searchInput = document.getElementById('menu-search');
-if (searchInput) {
-  searchInput.addEventListener('input', () => {
-    const query = searchInput.value.toLowerCase().trim();
-
-    if (query === '') {
-      // Reset to active tab
-      const activeTab = document.querySelector('.menu-tab.active');
-      if (activeTab) filterMenu(activeTab.dataset.category);
-      return;
-    }
-
-    // Deactivate tabs during search
-    tabs.forEach(t => t.classList.remove('active'));
-
-    cards.forEach(card => {
-      const text = card.textContent.toLowerCase();
-      card.hidden = !text.includes(query);
-    });
-  });
 }
 
 // About gallery (specials carousel)
@@ -164,22 +110,23 @@ document.querySelectorAll('a[href]').forEach(link => {
 });
 
 // Track menu category tab clicks
-tabs.forEach(tab => {
+document.querySelectorAll('.menu-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     if (typeof gtag === 'function') {
       gtag('event', 'view_menu_category', {
-        menu_category: tab.dataset.category
+        menu_category: tab.dataset.cat || tab.dataset.category
       });
     }
   });
 });
 
 // Track menu search usage
-if (searchInput) {
+const menuSearch = document.getElementById('menu-search');
+if (menuSearch) {
   let searchTimeout;
-  searchInput.addEventListener('input', () => {
+  menuSearch.addEventListener('input', () => {
     clearTimeout(searchTimeout);
-    const query = searchInput.value.trim();
+    const query = menuSearch.value.trim();
     if (query.length >= 2 && typeof gtag === 'function') {
       searchTimeout = setTimeout(() => {
         gtag('event', 'search_menu', { search_term: query });
