@@ -816,18 +816,24 @@
     // Sticky nav: highlight active category on scroll
     const catHeaders = document.querySelectorAll('.menu-cat-header');
     const navLinks = document.querySelectorAll('.menu-tabs a[data-cat]');
+    let isScrolling = false;
 
     const observer = new IntersectionObserver((entries) => {
+      if (isScrolling) return;
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const id = entry.target.id;
           navLinks.forEach(link => {
             link.classList.toggle('active', link.getAttribute('href') === '#' + id);
           });
-          // Scroll the active tab into view in the nav strip
+          // Scroll the active tab into view in the nav strip (horizontal only)
           const activeLink = document.querySelector('.menu-tabs a.active');
-          if (activeLink) {
-            activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          const tabStrip = document.querySelector('.menu-tabs');
+          if (activeLink && tabStrip) {
+            const stripRect = tabStrip.getBoundingClientRect();
+            const linkRect = activeLink.getBoundingClientRect();
+            const offset = linkRect.left - stripRect.left - (stripRect.width / 2) + (linkRect.width / 2);
+            tabStrip.scrollBy({ left: offset, behavior: 'smooth' });
           }
         }
       });
@@ -835,12 +841,18 @@
 
     catHeaders.forEach(h => observer.observe(h));
 
-    // Click nav links: smooth scroll
+    // Click nav links: smooth scroll (pause observer so it doesn't interrupt)
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const target = document.querySelector(link.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        if (target) {
+          isScrolling = true;
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          target.scrollIntoView({ behavior: 'smooth' });
+          setTimeout(() => { isScrolling = false; }, 1000);
+        }
       });
     });
 
