@@ -62,7 +62,8 @@ if (tabsContainer && tabsWrapper) {
 
 // Show featured by default (without scrolling)
 filterMenu('featured');
-document.querySelector('.menu-tab[data-category="featured"]').classList.add('active');
+const featuredTab = document.querySelector('.menu-tab[data-category="featured"]');
+if (featuredTab) featuredTab.classList.add('active');
 initialLoad = false;
 
 // Menu search
