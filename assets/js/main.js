@@ -136,32 +136,68 @@ if (heroActions && stickyOrder) {
   observer.observe(heroActions);
 }
 
-// Track button clicks in Google Analytics
+// Track button clicks in Google Analytics — each action is its own event name
 document.querySelectorAll('a[href]').forEach(link => {
   const href = link.href;
-  let label = null;
+  let eventName = null;
 
   if (href.includes('toasttab.com')) {
-    label = 'Order Pickup';
+    eventName = 'click_order_pickup';
   } else if (href.includes('doordash.com')) {
-    label = 'DoorDash';
+    eventName = 'click_doordash';
   } else if (href.includes('ubereats.com')) {
-    label = 'Uber Eats';
+    eventName = 'click_uber_eats';
   } else if (href.includes('olympia-menu.pdf')) {
-    label = 'Menu PDF';
+    eventName = 'click_menu_pdf';
   } else if (href.includes('tel:')) {
-    label = 'Phone Call';
+    eventName = 'click_phone_call';
   } else if (href.includes('google.com/maps') || href.includes('share.google')) {
-    label = 'Google Reviews';
+    eventName = 'click_google_reviews';
   }
 
-  if (label && typeof gtag === 'function') {
+  if (eventName && typeof gtag === 'function') {
     link.addEventListener('click', () => {
-      gtag('event', 'click', {
-        event_category: 'engagement',
-        event_label: label,
-        transport_type: 'beacon'
-      });
+      gtag('event', eventName, { transport_type: 'beacon' });
     });
   }
 });
+
+// Track menu category tab clicks
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'view_menu_category', {
+        menu_category: tab.dataset.category
+      });
+    }
+  });
+});
+
+// Track menu search usage
+if (searchInput) {
+  let searchTimeout;
+  searchInput.addEventListener('input', () => {
+    clearTimeout(searchTimeout);
+    const query = searchInput.value.trim();
+    if (query.length >= 2 && typeof gtag === 'function') {
+      searchTimeout = setTimeout(() => {
+        gtag('event', 'search_menu', { search_term: query });
+      }, 1000);
+    }
+  });
+}
+
+// Track which sections people scroll to
+const sections = document.querySelectorAll('section[id]');
+const tracked = new Set();
+if (sections.length && typeof gtag === 'function') {
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !tracked.has(entry.target.id)) {
+        tracked.add(entry.target.id);
+        gtag('event', 'view_section', { section_name: entry.target.id });
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(section => sectionObserver.observe(section));
+}
